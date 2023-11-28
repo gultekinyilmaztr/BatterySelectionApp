@@ -1,4 +1,4 @@
-﻿namespace Battery.Entities.Concrete
+﻿namespace CorePackages.Entities.Concrete
 {
     public class CategoryFeature
     {

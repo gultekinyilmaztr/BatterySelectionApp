@@ -16,7 +16,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Battery.Entities\Battery.Entities.csproj" />
     <ProjectReference Include="..\CorePackages\CorePackages.csproj" />
   </ItemGroup>
 

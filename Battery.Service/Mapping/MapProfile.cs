@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
-using Battery.Entities.Concrete;
-using Battery.Entities.DTOs;
+using CorePackages.Entities.Concrete;
+using CorePackages.Entities.DTOs;
 
 namespace Battery.Service.Mapping
 {
@@ -12,6 +12,7 @@ namespace Battery.Service.Mapping
             CreateMap<Product, ProductDto>().ReverseMap();
             CreateMap<Category, CategoryDto>().ReverseMap();
             CreateMap<ProductFeature, ProductFeatureDto>().ReverseMap();
+            CreateMap<Product, ProductWithCategoryDto>();
         }
     }
 }

@@ -1,4 +1,4 @@
-﻿namespace Battery.Entities.DTOs
+﻿namespace CorePackages.Entities.DTOs
 {
     public class CategoryDto : BaseDto
     {

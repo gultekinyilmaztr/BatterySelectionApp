@@ -1,4 +1,4 @@
-﻿using Battery.Entities.Concrete;
+﻿using CorePackages.Entities.Concrete;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 

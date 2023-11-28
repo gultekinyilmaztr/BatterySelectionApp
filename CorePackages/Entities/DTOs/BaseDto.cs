@@ -1,4 +1,4 @@
-﻿namespace Battery.Entities.DTOs
+﻿namespace CorePackages.Entities.DTOs
 {
     public abstract class BaseDto
     {
