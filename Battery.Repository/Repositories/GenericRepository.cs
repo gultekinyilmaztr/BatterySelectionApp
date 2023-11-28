@@ -10,10 +10,10 @@ namespace Battery.Repository.Repositories
         protected readonly BatterySelectionDbContext _context;
         private readonly DbSet<T> _dbSet;
 
-        public GenericRepository(BatterySelectionDbContext context, DbSet<T> dbSet)
+        public GenericRepository(BatterySelectionDbContext context)
         {
             _context = context;
-            _dbSet = dbSet;
+            _dbSet = context.Set<T>();
         }
 
         public async Task AddAsync(T entity)
