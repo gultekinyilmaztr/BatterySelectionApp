@@ -1,11 +1,15 @@
+using Battery.API.Filters;
 using Battery.Repository.Concrete.EntityFramework;
 using Battery.Repository.Repositories;
 using Battery.Repository.UnitOfWorks;
 using Battery.Service.Mapping;
 using Battery.Service.Services;
+using Battery.Service.Validations;
 using CorePackages.Repositories;
 using CorePackages.Services;
 using CorePackages.UnitOfWorks;
+using FluentValidation.AspNetCore;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Reflection;
 
@@ -13,7 +17,15 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
-builder.Services.AddControllers();
+builder.Services.AddControllers(options => options.Filters.Add(new ValidateFilterAttribute())).AddFluentValidation(x => x.RegisterValidatorsFromAssemblyContaining<ProductDtoValidator>());
+
+builder.Services.Configure<ApiBehaviorOptions>(options =>
+{
+    options.SuppressModelStateInvalidFilter = true;
+
+});
+
+
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
