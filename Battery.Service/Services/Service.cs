@@ -1,4 +1,5 @@
-﻿using CorePackages.Repositories;
+﻿using Battery.Service.Exceptions;
+using CorePackages.Repositories;
 using CorePackages.Services;
 using CorePackages.UnitOfWorks;
 using Microsoft.EntityFrameworkCore;
@@ -43,14 +44,13 @@ namespace Battery.Service.Services
 
         public async Task<T> GetByIdAsync(int id)
         {
-            return await _repository.GetByIdAsync(id);
-            //var hasProduct = await _repository.GetByIdAsync(id);
+            var hasProduct = await _repository.GetByIdAsync(id);
 
-            //if (hasProduct == null)
-            //{
-            //    throw new NotFoundExcepiton($"{typeof(T).Name}({id}) not found");
-            //}
-            //return hasProduct;
+            if (hasProduct == null)
+            {
+                throw new NotFoundException($"{typeof(T).Name}(id) not found");
+            }
+            return hasProduct;
         }
 
         public async Task RemoveAsync(T entity)

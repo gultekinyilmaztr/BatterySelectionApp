@@ -1,13 +1,11 @@
+using Autofac;
+using Autofac.Extensions.DependencyInjection;
 using Battery.API.Filters;
+using Battery.API.Middlewares;
+using Battery.API.Modules;
 using Battery.Repository.Concrete.EntityFramework;
-using Battery.Repository.Repositories;
-using Battery.Repository.UnitOfWorks;
 using Battery.Service.Mapping;
-using Battery.Service.Services;
 using Battery.Service.Validations;
-using CorePackages.Repositories;
-using CorePackages.Services;
-using CorePackages.UnitOfWorks;
 using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -25,24 +23,13 @@ builder.Services.Configure<ApiBehaviorOptions>(options =>
 
 });
 
-
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
-builder.Services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
-builder.Services.AddScoped(typeof(IService<>), typeof(Service<>));
+builder.Services.AddScoped(typeof(NotFoundFilter<>));
+
 builder.Services.AddAutoMapper(typeof(MapProfile));
-
-builder.Services.AddScoped<IProductRepository, ProductRepository>();
-builder.Services.AddScoped<IProductService, ProductService>();
-
-builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
-builder.Services.AddScoped<ICategoryService, CategoryService>();
-
-
-
 
 builder.Services.AddDbContext<BatterySelectionDbContext>(x =>
 {
@@ -52,6 +39,11 @@ builder.Services.AddDbContext<BatterySelectionDbContext>(x =>
 
     });
 });
+
+builder.Host.UseServiceProviderFactory
+    (new AutofacServiceProviderFactory());
+builder.Host.ConfigureContainer<ContainerBuilder>(containerBuilder => containerBuilder.RegisterModule(new RepoServiceModule()));
+
 
 var app = builder.Build();
 
@@ -63,6 +55,8 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+app.UseCustomException();
 
 app.UseAuthorization();
 

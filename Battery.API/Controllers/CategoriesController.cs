@@ -1,5 +1,4 @@
 ﻿using CorePackages.Services;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Battery.API.Controllers

@@ -1,15 +1,9 @@
 ﻿using AutoMapper;
-using Battery.Repository.Repositories;
 using CorePackages.Entities.Concrete;
 using CorePackages.Entities.DTOs;
 using CorePackages.Repositories;
 using CorePackages.Services;
 using CorePackages.UnitOfWorks;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Battery.Service.Services
 {

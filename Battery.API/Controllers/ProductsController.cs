@@ -25,7 +25,6 @@ namespace Battery.API.Controllers
             return CreateActionResult(await _productService.GetProductsWithCategory());
         }
 
-
         [HttpGet]
         public async Task<IActionResult> All()
         {
@@ -34,6 +33,7 @@ namespace Battery.API.Controllers
             return CreateActionResult(CustomResponseDto<List<ProductDto>>.Success(200, productsDtos));
         }
 
+        //[ServiceFilter(typeof(NotFoundFilter<Product>))]
         [HttpGet("{id}")]
         public async Task<IActionResult> GetById(int id)
         {
