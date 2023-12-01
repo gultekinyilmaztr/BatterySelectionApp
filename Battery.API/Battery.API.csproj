@@ -17,9 +17,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Battery.Repository\Battery.Repository.csproj" />
-    <ProjectReference Include="..\Battery.Service\Battery.Service.csproj" />
-    <ProjectReference Include="..\CorePackages\CorePackages.csproj" />
+    <ProjectReference Include="..\Battery.Caching\Battery.Caching.csproj" />
   </ItemGroup>
 
 </Project>

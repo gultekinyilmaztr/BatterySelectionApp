@@ -1,4 +1,5 @@
 ﻿using Autofac;
+using Battery.Caching;
 using Battery.Repository.Concrete.EntityFramework;
 using Battery.Repository.Repositories;
 using Battery.Repository.UnitOfWorks;
@@ -30,18 +31,8 @@ namespace Battery.API.Modules
 
             builder.RegisterAssemblyTypes(apiAssembly, repoAssembly, serviceAssembly).Where(x => x.Name.EndsWith("Service")).AsImplementedInterfaces().InstancePerLifetimeScope();
 
-
+            builder.RegisterType<ProductServiceWithCaching>().As<IProductService>();
         }
-
-
-
-
-
-
-
-
-
-
 
     }
 }
