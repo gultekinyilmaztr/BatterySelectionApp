@@ -11,7 +11,7 @@ namespace Battery.Repository.Repositories
         {
         }
 
-        public async Task<List<Product>> GetProductWithCategory()
+        public async Task<List<Product>> GetProductsWithCategory()
         {
             return await _context.Products.Include(x => x.Category).ToListAsync();
         }

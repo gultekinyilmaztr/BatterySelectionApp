@@ -29,7 +29,7 @@ namespace Battery.Caching
 
             if (!_memoryCache.TryGetValue(CacheProductKey, out _))
             {
-                _memoryCache.Set(CacheProductKey, _repository.GetProductWithCategory().Result);
+                _memoryCache.Set(CacheProductKey, _repository.GetProductsWithCategory().Result);
             }
         }
 
@@ -71,13 +71,13 @@ namespace Battery.Caching
             return Task.FromResult(product);
         }
 
-        public Task<CustomResponseDto<List<ProductWithCategoryDto>>> GetProductsWithCategory()
+        public Task<List<ProductWithCategoryDto>> GetProductsWithCategory()
         {
             var products = _memoryCache.Get<IEnumerable<Product>>(CacheProductKey);
 
             var productsWithCategoryDto = _mapper.Map<List<ProductWithCategoryDto>>(products);
 
-            return Task.FromResult(CustomResponseDto<List<ProductWithCategoryDto>>.Success(200, productsWithCategoryDto));
+            return Task.FromResult(productsWithCategoryDto);
         }
 
         public async Task RemoveAsync(Product entity)
@@ -110,6 +110,7 @@ namespace Battery.Caching
         {
             _memoryCache.Set(CacheProductKey, await _repository.GetAll().ToListAsync());
         }
+
     }
 }
 
