@@ -1,7 +1,31 @@
+using Autofac.Extensions.DependencyInjection;
+using Autofac;
+using Battery.Web.Modules;
+using Battery.Repository.Concrete.EntityFramework;
+using Microsoft.EntityFrameworkCore;
+using System.Reflection;
+using Battery.Service.Mapping;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+builder.Services.AddAutoMapper(typeof(MapProfile));
+
+builder.Services.AddDbContext<BatterySelectionDbContext>(x =>
+{
+    x.UseSqlServer(builder.Configuration.GetConnectionString("SqlConnection"), option =>
+    {
+        option.MigrationsAssembly(Assembly.GetAssembly(typeof(BatterySelectionDbContext)).GetName().Name);
+
+    });
+});
+
+
+builder.Host.UseServiceProviderFactory
+    (new AutofacServiceProviderFactory());
+builder.Host.ConfigureContainer<ContainerBuilder>(containerBuilder => containerBuilder.RegisterModule(new RepoServiceModule()));
+
 
 var app = builder.Build();
 

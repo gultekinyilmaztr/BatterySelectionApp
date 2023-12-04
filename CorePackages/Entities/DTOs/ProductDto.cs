@@ -1,8 +1,11 @@
-﻿namespace CorePackages.Entities.DTOs
+﻿using CorePackages.Entities.Concrete;
+
+namespace CorePackages.Entities.DTOs
 {
     public class ProductDto : BaseDto
     {
-        public string? CellSerialNo { get; set; }
+        public Category Category { get; set; }
+        public ProductFeature ProductFeature { get; set; }
 
     }
 }

@@ -27,7 +27,10 @@ namespace Battery.Repository.Concrete.Seeds
                     Durum = true,
                     ProductId = 2,
 
-                });
+                }
+
+          
+                );
         }
     }
 }
