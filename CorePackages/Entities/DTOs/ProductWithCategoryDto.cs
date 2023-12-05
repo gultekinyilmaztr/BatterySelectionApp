@@ -6,6 +6,6 @@ namespace CorePackages.Entities.DTOs
     {
         public CategoryDto Category { get; set; }
 
-        public ProductFeatureDto ProductFeature { get; set; }
+        public ProductFeatureDto? ProductFeature { get; set; }
     }
 }

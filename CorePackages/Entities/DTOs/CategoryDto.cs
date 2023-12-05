@@ -2,6 +2,6 @@
 {
     public class CategoryDto : BaseDto
     {
-        public string CategoryName { get; set; }
+        public string? CategoryName { get; set; }
     }
 }
