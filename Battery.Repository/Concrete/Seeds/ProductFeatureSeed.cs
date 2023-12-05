@@ -29,7 +29,7 @@ namespace Battery.Repository.Concrete.Seeds
 
                 }
 
-          
+
                 );
         }
     }

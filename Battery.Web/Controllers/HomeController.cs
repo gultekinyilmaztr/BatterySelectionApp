@@ -1,8 +1,7 @@
-﻿using Battery.Web.Models;
+﻿using CorePackages.Entities.DTOs;
 using Microsoft.AspNetCore.Mvc;
-using System.Diagnostics;
 
-namespace Battery.Web.Controllers
+namespace NLayer.Web.Controllers
 {
     public class HomeController : Controller
     {
@@ -24,9 +23,9 @@ namespace Battery.Web.Controllers
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
+        public IActionResult Error(ErrorViewModel errorViewModel)
         {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+            return View(errorViewModel);
         }
     }
 }

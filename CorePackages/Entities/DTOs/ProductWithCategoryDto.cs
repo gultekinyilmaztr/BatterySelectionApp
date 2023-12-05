@@ -1,6 +1,4 @@
-﻿using CorePackages.Entities.Concrete;
-
-namespace CorePackages.Entities.DTOs
+﻿namespace CorePackages.Entities.DTOs
 {
     public class ProductWithCategoryDto : ProductDto
     {
